@@ -8,6 +8,8 @@ import {
     eliminar
 } from '../controllers/heladoController.js';
 
+import { verificarToken, verificarAdmin } from '../middlewares/authMiddleware.js';
+
 const router = express.Router();
 
 // GET Obtener todos
@@ -20,12 +22,11 @@ router.get('/:id', obtenerHelado);
 router.get('/categoria/:categoria', obtenerPorCat);
 
 // POST Crear helado
-router.post('/', crear);
-
+router.post('/', verificarToken, verificarAdmin, crear);
 //PUT - Actualizar helado
-router.put('/:id', editar);
+router.put('/:id',verificarToken,verificarAdmin, editar);
 
 //DELETE - Eliminar helado
-router.delete('/:id', eliminar);
+router.delete('/:id', verificarToken,verificarAdmin, eliminar);
 
 export default router;

@@ -5,6 +5,8 @@ import { conectaDB } from './config/supabase.js';
 import authRoutes from './routes/Auth.js';
 import userRoutes from './routes/User.js';
 import heladosRoutes from "./routes/helados.js";
+import pedidosRoutes from './routes/pedidos.js';
+
 
 
 //CARGA DE VARIABLES DE ENTORNO
@@ -21,6 +23,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use("/user", userRoutes);
 app.use('/helados', heladosRoutes);
+app.use('/api', pedidosRoutes);
 
 //PRIMERA RUTA
 app.get('/', (req, res) => { 
